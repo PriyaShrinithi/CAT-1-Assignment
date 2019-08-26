@@ -1,1 +1,77 @@
+#include <iostream>
+#define max 124;
+using namespace std;
+struct node {
+	int value;
+	struct node* next;
+};
 
+class sll
+{
+	struct node* top;
+public:
+	sll();
+	void push(int x);
+	int count();
+	int count(int j);
+};
+sll::sll()
+{
+	top == NULL;
+	top->next == NULL;
+}
+void sll::push(int x)
+{
+	struct node* temp;
+	temp = new node;
+	temp->value = x;
+
+	top = temp;
+	temp->next = top->next;
+	delete top;
+}
+int sll::count()
+{
+	struct node* curr;
+	curr = new node();
+	int i, x;
+	for (curr = top, i = 0; curr->next != NULL; curr = curr->next, i++)
+	{
+		int j = curr->value;
+		x = count(j);
+	}
+
+	return x;
+}
+
+int sll::count(int j)
+{
+	struct node* curr;
+	curr = new node();
+	int c = 0;
+	while (curr != NULL)
+	{
+		if (curr->value == j)
+			c++;
+		curr = curr->next;
+	}
+	return c;
+}
+
+int main()
+{
+	sll s;
+	int j;
+	for (int i = 0; i < 5; i++)
+	{
+		int x;
+		cout << "Enter element " << i + 1 << " ";
+		cin >> x;
+		s.push(x);
+	}
+	for (int i = 0; i < 5; i++)
+	{
+		s.count();
+	}
+	return 0;
+}
