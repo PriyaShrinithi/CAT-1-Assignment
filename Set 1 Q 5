@@ -34,7 +34,7 @@ void sll::push(int x)
 
 int sll::count()
 {
-	int c = 0;
+	int c = 1;
 	struct node* prev;
 	struct node* curr;
 	for (curr = top; curr->next != NULL; curr = curr->next)
