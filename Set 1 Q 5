@@ -14,6 +14,7 @@ public:
 	void push(int x);
 	int count();
 	int count(int j);
+	int sort();
 };
 sll::sll()
 {
@@ -28,36 +29,29 @@ void sll::push(int x)
 
 	top = temp;
 	temp->next = top->next;
-	delete top;
+	delete temp;
 }
+
 int sll::count()
 {
-	struct node* curr;
-	curr = new node();
-	int i, x;
-	for (curr = top, i = 0; curr->next != NULL; curr = curr->next, i++)
-	{
-		int j = curr->value;
-		x = count(j);
-	}
-
-	return x;
-}
-
-int sll::count(int j)
-{
-	struct node* curr;
-	curr = new node();
 	int c = 0;
-	while (curr != NULL)
+	struct node* prev;
+	struct node* curr;
+	for (curr = top; curr->next != NULL; curr = curr->next)
 	{
-		if (curr->value == j)
-			c++;
-		curr = curr->next;
+		for (prev = top; prev != NULL; prev = prev->next)
+		{
+			if (curr->value == prev->value)
+			{
+				c++;
+				break;
+			}
+				
+		}
 	}
+
 	return c;
 }
-
 int main()
 {
 	sll s;
@@ -69,9 +63,7 @@ int main()
 		cin >> x;
 		s.push(x);
 	}
-	for (int i = 0; i < 5; i++)
-	{
-		s.count();
-	}
+	
+	int x = s.count();
 	return 0;
 }
